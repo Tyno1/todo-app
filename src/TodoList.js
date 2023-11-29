@@ -10,14 +10,16 @@ const TodoList = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const todoList = {
-      list: []
+      "task": "go to the market again again",
+      "id": 3
     }
+
     fetch(`http://localhost:8000/todoTitles/${todoId}`, {
-      method: "POST",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(todoList),
+      body: JSON.stringify({ ...todo, list: [...todo.list, todoList] }),
     }).then(() => {
-      console.log("now run");
+      getTodo();
     });
 
     // setTodo((currentTodos) => {
@@ -40,14 +42,16 @@ const TodoList = () => {
   //   });
   // };
 
-  useEffect(() => {
-    // Fetch the specific todo based on the todoId
+  const getTodo = () => {
     fetch(`http://localhost:8000/todoTitles/${todoId}`)
       .then((res) => res.json())
       .then((data) => {
         setTodo(data);
-        console.log(setTodo)
       });
+  }
+
+  useEffect(() => {
+    getTodo()
   }, [todoId]);
 
   if (!todo) {

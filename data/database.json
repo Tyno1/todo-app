@@ -37,20 +37,12 @@
       ]
     },
     {
-      "name": "third todo",
       "id": 3,
+      "name": "Third todo",
       "list": [
         {
           "task": "go to the market",
           "id": 1
-        },
-        {
-          "task": "go to the gym",
-          "id": 2
-        },
-        {
-          "task": "sleep",
-          "id": 3
         }
       ]
     },

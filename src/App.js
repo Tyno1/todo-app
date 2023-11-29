@@ -13,7 +13,6 @@ function App() {
           <Route path='/' element={<Todos />} />
           <Route path='/create' element={<CreateTodo />} />
           <Route path='/todos/:id' element={<TodoList />} />
-
         </Routes>
       </div>
     </div>

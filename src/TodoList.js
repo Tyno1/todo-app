@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-const TodoList = (match) => {
+const TodoList = () => {
   const [newItem, setNewItem] = useState("");
   const [todo, setTodo] = useState([]);
-  const todoId = 1
-  // parseInt(match.params.id, 10); // Get the todoId from the URL
-console.log(match);
+  const params = useParams();
+  const todoId = params.id // Get the todoId from the URL
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const todoList = {list: []}
-    fetch(`http://localhost:8000/todoTitles/${todoId}/list`, {
+    const todoList = {
+      list: []
+    }
+    fetch(`http://localhost:8000/todoTitles/${todoId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(todoList),
@@ -69,18 +72,22 @@ console.log(match);
       <h2 className="title">{todo.name}</h2>
       <div className="list">
         <ul>
-          {todo.list.map((task) => (
-            <li key={task.id}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={todo.completed}
-                  // onChange={(e) => toggleTodo(todo.id, e.target.value)}
-                />
-                {task.task} ({todo.completed})
-              </label>
-            </li>
-          ))}
+          {
+            todo.length === 0 ?
+              <div>No results found</div>
+              :
+              todo?.list?.map((task) => (
+                <li key={task.id}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={todo.completed}
+                    // onChange={(e) => toggleTodo(todo.id, e.target.value)}
+                    />
+                    {task.task} ({todo.completed})
+                  </label>
+                </li>
+              ))}
         </ul>
       </div>
     </div>

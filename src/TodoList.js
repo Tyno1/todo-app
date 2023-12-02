@@ -5,14 +5,22 @@ const TodoList = () => {
   const [newItem, setNewItem] = useState("");
   const [todo, setTodo] = useState([]);
   const params = useParams();
-  const todoId = params.id // Get the todoId from the URL
+  const todoId = params.id; // Get the todoId from the URL
+
+  const getTodo = () => {
+    fetch(`http://localhost:8000/todoTitles/${todoId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTodo(data);
+      });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const todoList = {
-      "task": "go to the market again again",
-      "id": 3
-    }
+      task: newItem,
+      id: todo.list.length + 1
+    };
 
     fetch(`http://localhost:8000/todoTitles/${todoId}`, {
       method: "PATCH",
@@ -22,36 +30,11 @@ const TodoList = () => {
       getTodo();
     });
 
-    // setTodo((currentTodos) => {
-    //   // CurrentTodos
-    //   return [...currentTodos, { title: newItem, completed: false }];
-    // });
-
     setNewItem("");
   };
 
-  // const toggleTodo = (id, completed) => {
-  //   console.log(completed);
-  //   setTodo((currentTodos) => {
-  //     return currentTodos.map((todoItem) => {
-  //       if (todoItem.id === id) {
-  //         return { ...todoItem, completed: !todo.completed };
-  //       }
-  //       return todo;
-  //     });
-  //   });
-  // };
-
-  const getTodo = () => {
-    fetch(`http://localhost:8000/todoTitles/${todoId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setTodo(data);
-      });
-  }
-
   useEffect(() => {
-    getTodo()
+    getTodo();
   }, [todoId]);
 
   if (!todo) {
@@ -76,22 +59,22 @@ const TodoList = () => {
       <h2 className="title">{todo.name}</h2>
       <div className="list">
         <ul>
-          {
-            todo.length === 0 ?
-              <div>No results found</div>
-              :
-              todo?.list?.map((task) => (
-                <li key={task.id}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={todo.completed}
+          {todo.length === 0 ? (
+            <div>No results found</div>
+          ) : (
+            todo?.list?.map((task) => (
+              <li key={task.id}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={todo.completed}
                     // onChange={(e) => toggleTodo(todo.id, e.target.value)}
-                    />
-                    {task.task} ({todo.completed})
-                  </label>
-                </li>
-              ))}
+                  />
+                  {task.task} ({todo.completed})
+                </label>
+              </li>
+            ))
+          )}
         </ul>
       </div>
     </div>

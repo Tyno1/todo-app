@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTodoContext } from "./contexts/todoContext";
 
 const CreateTodo = () => {
   const [name, setName] = useState("");
@@ -9,15 +8,16 @@ const CreateTodo = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const todoData = { name, list: [] };
-    navigate(`/todo-list`);
     setName("");
     fetch("http://localhost:8000/todoTitles", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(todoData),
-    }).then(() => {
-      console.log("now run");
-    });
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => navigate(`/todos/${data.id}`));
   };
 
   return (

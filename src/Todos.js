@@ -1,13 +1,18 @@
-import { Link } from "react-router-dom";
-import { useTodoContext } from "./contexts/todoContext";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import TodoList from "./TodoList";
+
 
 const Todos = () => {
-  //   const { title, setTitle } = useTodoContext();
   const [title, setTitle] = useState(null);
-  const handleclick = () => {
-    console.log("you clicked");
+  const navigate = useNavigate();
+ 
+
+  const handleClick = (todoId) => {
+    fetch(`http://localhost:8000/todoTitles/${todoId}`, {
+      method: "DELETE"
+    }).then(() => {
+      navigate('/')
+    });
   };
 
   useEffect(() => {
@@ -17,7 +22,6 @@ const Todos = () => {
       })
       .then((data) => {
         setTitle(data);
-        console.log(title);
       });
   }, []);
 
@@ -30,6 +34,7 @@ const Todos = () => {
               <Link to={`/todos/${todoTitle.id}`}>
                 <li>{todoTitle.name}</li>
               </Link>
+              <button onClick={() => handleClick(todoTitle.id)}>delete</button>
             </div>
           );
         })}

@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import img1 from "./images/eden-constantino-iJg1YzsEfqo-unsplash.jpg"
+import img2 from "./images/airfocus-v89zhr0iBFY-unsplash.jpg"
+import img3 from "./images/luis-villasmil-mlVbMbxfWI4-unsplash.jpg"
+
 
 const TodoList = () => {
   const [newItem, setNewItem] = useState("");
@@ -19,7 +23,7 @@ const TodoList = () => {
     e.preventDefault();
     const todoList = {
       task: newItem,
-      id: todo.list.length + 1
+      id: todo.list.length + 1,
     };
 
     fetch(`http://localhost:8000/todoTitles/${todoId}`, {
@@ -43,39 +47,49 @@ const TodoList = () => {
 
   return (
     <div className="todo-list">
-      <div className="add-todo">
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="item">New item</label>
-          <input
-            value={newItem}
-            onChange={(e) => setNewItem(e.target.value)}
-            type="text"
-            required
-            id="item"
-          />
-          <button className="buttn">Add</button>
-        </form>
+      <div className="left-cont">
+        <div className="add-todo">
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="item">New item</label>
+            <input
+              value={newItem}
+              onChange={(e) => setNewItem(e.target.value)}
+              type="text"
+              required
+              placeholder="input your tasks here..."
+              id="item"
+            />
+            <button className="buttn">Add Task</button>
+          </form>
+        </div>
+        <h2 className="title">{todo.name}</h2>
+        <div className="list">
+          <ul>
+            {todo.length === 0 ? (
+              <div>No results found</div>
+            ) : (
+              todo?.list?.map((task) => (
+                <li key={task.id}>
+                  <label>
+                    <input type="checkbox" checked={todo.completed} />
+                    {task.task} {todo.completed}
+                  </label>
+                </li>
+              ))
+            )}
+          </ul>
+        </div>
       </div>
-      <h2 className="title">{todo.name}</h2>
-      <div className="list">
-        <ul>
-          {todo.length === 0 ? (
-            <div>No results found</div>
-          ) : (
-            todo?.list?.map((task) => (
-              <li key={task.id}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={todo.completed}
-                    // onChange={(e) => toggleTodo(todo.id, e.target.value)}
-                  />
-                  {task.task} ({todo.completed})
-                </label>
-              </li>
-            ))
-          )}
-        </ul>
+      <div className="right-cont">
+        <div className="first-img">
+          <img src={img1} alt="" />
+        </div>
+        <div className="second-img">
+          <img src={img2} alt="" />
+        </div>
+        <div className="third-img">
+          <img src={img3} alt="" />
+        </div>
       </div>
     </div>
   );

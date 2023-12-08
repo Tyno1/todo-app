@@ -1,33 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 * {
   font-family: "Roboto";
-  color: rgb(76, 74, 74);
+  color: rgb(180, 180, 180);
 }
-
-.content {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: gray;
+ul {
+  list-style-type: none;
+  padding: 0px 0px 0px 10px;
 }
-
+body {
+  padding: 0px;
+  margin: 0px;
+  background-color: rgb(15, 15, 15);
+}
 .content .app-name {
   margin-left: auto;
   margin-right: auto;
 }
 
+/* ----------------------------------------- */
+/* ---------------Navbar------------- */
+/* ----------------------------------------- */
+
 .navbar {
-  padding: 0 20px;
+  padding: 0 60px;
   display: flex;
   align-items: center;
-  max-width: 100%;
-  margin: 0 auto;
-  border-bottom: 1px solid #f2f2f2;
+  /* border-bottom: 1px solid #333333; */
+  background-color: black;
 }
 .navbar h1 {
-  color: rgb(0, 81, 255);
+  color: rgb(180, 180, 180);
+  font-size: 20px;
 }
 
 .navbar .links {
@@ -39,5 +43,280 @@
   padding: 6px;
 }
 .navbar a:hover {
-  color: rgb(0, 81, 255);
+  color: rgb(248, 149, 0);
+}
+
+/* ----------------------------------------- */
+/* ---------------landing page------------- */
+/* ----------------------------------------- */
+.landing-page .hero {
+  width: 100vw;
+  height: 60vw;
+  position: relative;
+  background-color: black;
+}
+.landing-page .hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.3;
+}
+.landing-page .hero h2 {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}
+
+.landing-page .hero .texts {
+  position: absolute;
+  top: 30%;
+  left: 25%;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-page .hero button {
+  padding: 10px 70px;
+  font-weight: bold;
+  border: solid 3px;
+  border-radius: 20px;
+  border-color: rgb(248, 149, 0);
+  background: none;
+  cursor: pointer;
+}
+.landing-page .hero button:hover {
+  background-color: rgb(248, 149, 0);
+  color: black;
+}
+landing-page .hero button:active {
+  background-color: rgb(187, 87, 0);
+}
+/* ----------------------------------------- */
+
+/* ----------------------------------------- */
+/* ---------------create todo----------------- */
+/* ----------------------------------------- */
+.create-todo {
+  display: flex;
+  flex-direction: row;
+}
+.create-todo .imageSection {
+  padding: 40px;
+  width: 40%;
+  height: 100vh;
+}
+.create-todo .imageSection img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.8;
+}
+.create-todo .form-section {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+.create-todo .form-section .footer {
+  width: 90%;
+  font-size: 13px;
+  text-align: justify;
+  line-height: 18px;
+}
+.create-todo .form-section .footer p {
+  color: rgb(107, 107, 107);
+}
+.create-todo .form-section form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+  margin: 30vh auto;
+}
+.create-todo .form-section form label {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.create-todo .form-section form input {
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  width: 90%;
+}
+
+.create-todo .form-section form div button {
+  padding: 8px 50px;
+  font-size: 15px;
+  font-weight: bold;
+  border: solid 3px;
+  border-radius: 20px;
+  border-color: rgb(248, 149, 0);
+  background: none;
+  cursor: pointer;
+}
+
+.create-todo .form-section form div button:hover {
+  background-color: rgb(248, 149, 0);
+  color: black;
+}
+.create-todo .form-section form input {
+  font-weight: bold;
+  color: black;
+}
+
+.todo-list {
+  margin: 50px 60px;
+  display: flex;
+}
+.todo-list .left-cont {
+  width: 70%;
+}
+.todo-list .add-todo form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.todo-list .add-todo form input {
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-bottom: 20px;
+  padding: 15px;
+  margin: 0 20px;
+  border-radius: 10px;
+  width: 50%;
+  color: black;
+  font-style: italic;
+}
+.todo-list .add-todo form label {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.todo-list .add-todo form button {
+  padding: 11px 40px;
+  font-size: 15px;
+  font-weight: bold;
+  border: solid 3px;
+  border-radius: 20px;
+  border-color: rgb(248, 149, 0);
+  background: none;
+  cursor: pointer;
+}
+
+.todo-list .add-todo form button:hover {
+  background-color: rgb(248, 149, 0);
+  color: black;
+}
+.todo-list .title {
+  font-size: 35px;
+  margin-top: 40px;
+  color: rgb(248, 149, 0);
+}
+.todo-list .list {
+  font-size: 20px;
+  line-height: 50px;
+}
+.todo-list .right-cont {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  padding: 0px 20px;
+  align-items: end;
+}
+.todo-list .right-cont .first-img,
+.second-img,
+.third-img {
+  width: 80%;
+  height: 200px;
+  background-color: white;
+  margin-bottom: 30px;
+  border-bottom: 2px;
+}
+.todo-list .right-cont img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+/* ----------------------------------------- */
+/* ---------------All todo Titles----------------- */
+/* ----------------------------------------- */
+
+.todos {
+  margin: 50px 60px;
+  display: flex;
+}
+.todos .title {
+  font-size: 35px;
+  margin-top: 40px;
+  color: rgb(248, 149, 0);
+}
+.todos ul div {
+  width: 100%;
+  display: flex;
+  line-height: 60px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.todos li {
+  font-size: 20px;
+  margin-left: auto;
+  color: #ffffff;
+}
+.todos li:hover {
+  font-size: 27px;
+}
+.todos ul div button {
+  width: 80px;
+  height: 30px;
+  color: rgb(248, 149, 0);
+  background: none;
+  border: solid rgb(248, 149, 0);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.todos ul div button:hover {
+  background-color: rgb(248, 149, 0);
+  color: black;
+}
+.todos ul div {
+  border-style: solid;
+  border-color: rgb(131, 131, 131);
+  border-width: 0px 0px 0.5px 0px;
+}
+.todos .left-cont {
+  width: 70%;
+
+}
+.todos .right-cont {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  padding: 0px 20px;
+  align-items: end;
+}
+.todos .right-cont .first-img,
+.second-img,
+.third-img {
+  width: 80%;
+  height: 200px;
+  background-color: white;
+  margin-bottom: 30px;
+  border-bottom: 2px;
+}
+.todos .right-cont img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }

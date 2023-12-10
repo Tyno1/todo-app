@@ -25,6 +25,15 @@ const TodoList = () => {
       task: newItem,
       id: todo.list.length + 1,
     };
+    // const handleDelete = () => {
+    //   const handleClick = (todoId) => {
+    //     fetch(`http://localhost:8000/todoTitles/${todoId}`, {
+    //       method: "DELETE",
+    //     }).then(() => {
+          
+    //     });
+    //   };
+    // }
 
     fetch(`http://localhost:8000/todoTitles/${todoId}`, {
       method: "PATCH",
@@ -74,6 +83,7 @@ const TodoList = () => {
                     <input type="checkbox" checked={todo.completed} />
                     {task.task} {todo.completed}
                   </label>
+                  {/* <button onClick={handleDelete}>delete</button> */}
                 </li>
               ))
             )}

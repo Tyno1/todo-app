@@ -29,7 +29,7 @@ const CreateTodo = () => {
       <div className="form-section">
         <form onSubmit={handleSubmit}>
           <label>Todo Titile</label>
-          <p style={{fontSize: 12}}>Give this session a name before you start inputung tasks</p>
+          <p style={{fontSize: 12}}>Give this session a name before you start inputing tasks</p>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}

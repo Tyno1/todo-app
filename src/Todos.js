@@ -1,29 +1,13 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import img1 from "./images/eden-constantino-iJg1YzsEfqo-unsplash.jpg"
-import img2 from "./images/airfocus-v89zhr0iBFY-unsplash.jpg"
-import img3 from "./images/luis-villasmil-mlVbMbxfWI4-unsplash.jpg"
-
+import img1 from "./images/eden-constantino-iJg1YzsEfqo-unsplash.jpg";
+import img2 from "./images/airfocus-v89zhr0iBFY-unsplash.jpg";
+import img3 from "./images/luis-villasmil-mlVbMbxfWI4-unsplash.jpg";
 
 const Todos = () => {
   const [title, setTitle] = useState(null);
-  const navigate = useNavigate();
-
-  const handleClick = (todoId) => {
-    fetch(`http://localhost:8000/todoTitles/${todoId}`, {
-      method: "DELETE",
-    }).then(() => {
-      fetch("http://localhost:8000/todoTitles")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setTitle(data);
-      });
-    });
-  };
-
-  useEffect(() => {
+  
+  const fetchData = () => {
     fetch("http://localhost:8000/todoTitles")
       .then((res) => {
         return res.json();
@@ -31,6 +15,18 @@ const Todos = () => {
       .then((data) => {
         setTitle(data);
       });
+  };
+
+  const handleClick = (todoId) => {
+    fetch(`http://localhost:8000/todoTitles/${todoId}`, {
+      method: "DELETE",
+    }).then(() => {
+      fetchData();
+    });
+  };
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   return (
